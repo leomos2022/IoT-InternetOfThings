@@ -1,0 +1,443 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema IoT - Fábrica Inteligente | Demo Interactiva</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1>🏭 Sistema IoT - Fábrica Inteligente</h1>
+                <p>Demostración Interactiva de Implementación Industrial</p>
+            </div>
+            <div class="header-status">
+                <span class="status-indicator online"></span>
+                <span>Sistema Activo</span>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <ul class="nav-list">
+                <li><a href="#introduccion" class="nav-link">Introducción</a></li>
+                <li><a href="#dashboard" class="nav-link active">Dashboard</a></li>
+                <li><a href="#sistemas" class="nav-link">Sistemas</a></li>
+                <li><a href="#beneficios" class="nav-link">Beneficios</a></li>
+                <li><a href="#referencias" class="nav-link">Referencias</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="introduccion" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <h2>Transformación Digital en Manufactura</h2>
+                <p class="lead">La Internet de las Cosas (IoT) representa un paradigma tecnológico que revoluciona el contexto empresarial. Esta demostración simula en tiempo real la implementación de tres sistemas IoT críticos para una fábrica inteligente.</p>
+                <div class="hero-stats">
+                    <div class="stat-card">
+                        <div class="stat-value">30%</div>
+                        <div class="stat-label">Ahorro Energético</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">70%</div>
+                        <div class="stat-label">Reducción Paradas</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-value">24/7</div>
+                        <div class="stat-label">Monitoreo Continuo</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Dashboard Section -->
+    <section id="dashboard" class="dashboard">
+        <div class="container">
+            <h2 class="section-title">Dashboard en Tiempo Real</h2>
+            
+            <!-- System Overview Cards -->
+            <div class="system-overview">
+                <div class="overview-card energy">
+                    <div class="card-header">
+                        <h3>⚡ Gestión Energética</h3>
+                        <span class="badge badge-success">Óptimo</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="metric">
+                            <span class="metric-value" id="energy-current">0</span>
+                            <span class="metric-unit">kW</span>
+                        </div>
+                        <div class="metric-label">Consumo Actual</div>
+                        <div class="progress-bar">
+                            <div class="progress-fill" id="energy-progress"></div>
+                        </div>
+                        <div class="metric-info">
+                            <span>Ahorro hoy: <strong id="energy-savings">0</strong>%</span>
+                            <span>vs. promedio</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="overview-card maintenance">
+                    <div class="card-header">
+                        <h3>🔧 Mantenimiento Predictivo</h3>
+                        <span class="badge badge-warning" id="maintenance-badge">Monitoreo</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="metric">
+                            <span class="metric-value" id="health-score">0</span>
+                            <span class="metric-unit">%</span>
+                        </div>
+                        <div class="metric-label">Salud del Equipo</div>
+                        <div class="health-indicators">
+                            <div class="indicator">
+                                <span class="indicator-icon">🌡️</span>
+                                <span class="indicator-value" id="temp-value">0</span>°C
+                            </div>
+                            <div class="indicator">
+                                <span class="indicator-icon">📊</span>
+                                <span class="indicator-value" id="vibration-value">0</span>
+                            </div>
+                        </div>
+                        <div class="alert-box" id="maintenance-alert" style="display: none;">
+                            <span>⚠️</span>
+                            <span id="alert-message"></span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="overview-card monitoring">
+                    <div class="card-header">
+                        <h3>📡 Sistema Integrado IoT</h3>
+                        <span class="badge badge-info">Activo</span>
+                    </div>
+                    <div class="card-body">
+                        <div class="sensor-grid">
+                            <div class="sensor-item">
+                                <div class="sensor-icon">🌡️</div>
+                                <div class="sensor-data">
+                                    <div class="sensor-value" id="sensor-temp">0°C</div>
+                                    <div class="sensor-label">Temperatura</div>
+                                </div>
+                            </div>
+                            <div class="sensor-item">
+                                <div class="sensor-icon">📳</div>
+                                <div class="sensor-data">
+                                    <div class="sensor-value" id="sensor-vibration">0</div>
+                                    <div class="sensor-label">Vibración</div>
+                                </div>
+                            </div>
+                            <div class="sensor-item">
+                                <div class="sensor-icon">⚡</div>
+                                <div class="sensor-data">
+                                    <div class="sensor-value" id="sensor-current">0</div>
+                                    <div class="sensor-label">Corriente</div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Charts Row -->
+            <div class="charts-row">
+                <div class="chart-container">
+                    <h3 class="chart-title">📊 Consumo Energético (últimas 24h)</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="energyChart"></canvas>
+                    </div>
+                </div>
+                <div class="chart-container">
+                    <h3 class="chart-title">🔧 Indicadores de Salud del Equipo</h3>
+                    <div class="chart-wrapper">
+                        <canvas id="healthChart"></canvas>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Circuit Implementations -->
+            <div class="circuit-showcase">
+                <div class="circuit-card" onclick="openModal('modal1')">
+                    <div class="click-indicator">👁️ Click para ampliar</div>
+                    <img src="Brilliant Albar (1).png" alt="Sistema IoT Integrado" class="circuit-image">
+                    <div class="circuit-label">🏭 Sistema IoT Integrado</div>
+                    <div class="circuit-description">Monitoreo de temperatura, vibración y corriente en tiempo real</div>
+                </div>
+                <div class="circuit-card" onclick="openModal('modal2')">
+                    <div class="click-indicator">👁️ Click para ampliar</div>
+                    <img src="Incredible Wolt.png" alt="Mantenimiento Predictivo" class="circuit-image">
+                    <div class="circuit-label">🔧 Mantenimiento Predictivo</div>
+                    <div class="circuit-description">Sistema de scoring de salud con alertas tempranas</div>
+                </div>
+                <div class="circuit-card" onclick="openModal('modal3')">
+                    <div class="click-indicator">👁️ Click para ampliar</div>
+                    <img src="Tremendous Leelo-Curcan.png" alt="Gestión Energética" class="circuit-image">
+                    <div class="circuit-label">⚡ Gestión Energética</div>
+                    <div class="circuit-description">Control de consumo y optimización de recursos</div>
+                </div>
+            </div>
+
+            <!-- Modal 1: Sistema IoT Integrado -->
+            <div id="modal1" class="modal">
+                <div class="modal-content">
+                    <span class="modal-close" onclick="closeModal('modal1')">&times;</span>
+                    <h2 class="modal-title">🏭 Sistema IoT Integrado</h2>
+                    <img src="Brilliant Albar (1).png" alt="Sistema IoT Integrado" class="modal-image">
+                    <div class="modal-description">
+                        <h3>Descripción del Circuito</h3>
+                        <p>Este sistema integra tres sensores críticos para el monitoreo industrial en tiempo real:</p>
+                        <ul>
+                            <li><strong>Sensor de Temperatura (LM35):</strong> Monitorea la temperatura del motor crítico. Alerta cuando supera los 35°C, indicando posible sobrecalentamiento.</li>
+                            <li><strong>Sensor de Vibración (Acelerómetro):</strong> Detecta patrones anómalos de vibración que pueden indicar desbalanceo o desgaste de rodamientos.</li>
+                            <li><strong>Sensor de Corriente (ACS712):</strong> Mide el consumo eléctrico en tiempo real, detectando sobrecargas o consumos anómalos.</li>
+                        </ul>
+                        <h3>Componentes Principales</h3>
+                        <ul>
+                            <li>Arduino UNO como controlador central</li>
+                            <li>LCD 16x2 para visualización de datos</li>
+                            <li>LEDs indicadores (Verde: Normal, Amarillo: Advertencia, Rojo: Crítico)</li>
+                            <li>Potenciómetros para simular lecturas de sensores</li>
+                        </ul>
+                        <h3>Funcionamiento</h3>
+                        <p>El sistema captura datos cada 2 segundos, evalúa umbrales de seguridad y genera alertas visuales y sonoras cuando detecta condiciones anómalas. Los datos se muestran en el LCD y pueden enviarse a sistemas SCADA para análisis histórico.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal 2: Mantenimiento Predictivo -->
+            <div id="modal2" class="modal">
+                <div class="modal-content">
+                    <span class="modal-close" onclick="closeModal('modal2')">&times;</span>
+                    <h2 class="modal-title">🔧 Mantenimiento Predictivo Avanzado</h2>
+                    <img src="Incredible Wolt.png" alt="Mantenimiento Predictivo" class="modal-image">
+                    <div class="modal-description">
+                        <h3>Descripción del Sistema</h3>
+                        <p>Sistema avanzado que calcula un "Health Score" (0-100%) basado en múltiples parámetros para predecir fallos antes de que ocurran:</p>
+                        <ul>
+                            <li><strong>Temperatura del Equipo:</strong> Monitoreo continuo que penaliza el score cuando supera rangos normales.</li>
+                            <li><strong>Nivel de Vibración:</strong> Análisis de patrones vibratorios que indican desgaste de componentes mecánicos.</li>
+                            <li><strong>Tiempo de Operación:</strong> Cálculo de horas de uso para programar mantenimientos preventivos.</li>
+                        </ul>
+                        <h3>Algoritmo de Scoring</h3>
+                        <p>El sistema comienza con 100% de salud y aplica penalizaciones:</p>
+                        <ul>
+                            <li>Temperatura > 35°C: -3 puntos por cada grado adicional</li>
+                            <li>Vibración > 800 unidades: -0.1 puntos por unidad adicional</li>
+                            <li>Score < 60%: Alerta de mantenimiento urgente</li>
+                            <li>Score < 40%: Parada programada recomendada</li>
+                        </ul>
+                        <h3>Beneficios Comprobados</h3>
+                        <p>Según Ramírez et al. (2023), este enfoque puede reducir las paradas no planificadas hasta en un 70%, extendiendo la vida útil de equipos críticos y optimizando inventarios de repuestos.</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Modal 3: Gestión Energética -->
+            <div id="modal3" class="modal">
+                <div class="modal-content">
+                    <span class="modal-close" onclick="closeModal('modal3')">&times;</span>
+                    <h2 class="modal-title">⚡ Sistema de Gestión Energética Inteligente</h2>
+                    <img src="Tremendous Leelo-Curcan.png" alt="Gestión Energética" class="modal-image">
+                    <div class="modal-description">
+                        <h3>Descripción del Sistema</h3>
+                        <p>Plataforma de monitoreo energético en tiempo real que identifica patrones de ineficiencia y oportunidades de ahorro:</p>
+                        <ul>
+                            <li><strong>Sensor de Corriente ACS712:</strong> Mide el consumo eléctrico de cada línea de producción con precisión de ±1.5%.</li>
+                            <li><strong>Análisis de Consumo:</strong> Compara consumo actual vs. histórico para detectar desviaciones significativas.</li>
+                            <li><strong>Alertas Inteligentes:</strong> Notifica cuando el consumo excede umbrales definidos, indicando posibles averías o uso ineficiente.</li>
+                        </ul>
+                        <h3>Componentes del Circuito</h3>
+                        <ul>
+                            <li>Arduino UNO como unidad de procesamiento</li>
+                            <li>Sensor ACS712 (30A) para medición de corriente</li>
+                            <li>LCD 16x2 mostrando consumo en Watts y kWh acumulados</li>
+                            <li>Sistema de LEDs indicando niveles de consumo (Bajo/Normal/Alto)</li>
+                            <li>Módulo de almacenamiento para históricos</li>
+                        </ul>
+                        <h3>Impacto Económico</h3>
+                        <p>Según Llaneza González (2018), la implementación de este sistema permite:</p>
+                        <ul>
+                            <li>Ahorros de hasta 30% en facturación eléctrica</li>
+                            <li>Reducción de 25% en huella de carbono organizacional</li>
+                            <li>Predictibilidad presupuestaria con precisión del 95%</li>
+                            <li>ROI típico de 8-14 meses</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Real-time Logs -->
+            <div class="logs-section">
+                <h3 class="chart-title">📋 Registro de Eventos en Tiempo Real</h3>
+                <div class="logs-container" id="logs-container">
+                    <div class="log-entry">
+                        <span class="log-time">Iniciando sistema...</span>
+                        <span class="log-message">Dashboard cargado correctamente</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Systems Section -->
+    <section id="sistemas" class="systems">
+        <div class="container">
+            <h2 class="section-title">Sistemas Implementados</h2>
+            
+            <div class="system-details">
+                <div class="system-card">
+                    <div class="system-icon">⚡</div>
+                    <h3>Sistema de Gestión Energética Inteligente</h3>
+                    <p>Monitoreo en tiempo real del consumo energético mediante sensores ACS712, identificando patrones de ineficiencia y optimizando el uso de recursos.</p>
+                    <ul class="system-features">
+                        <li>✓ Detección de consumos anómalos</li>
+                        <li>✓ Proyección de gastos energéticos</li>
+                        <li>✓ Ahorro hasta 30% en facturación</li>
+                        <li>✓ Alertas automáticas de desviaciones</li>
+                    </ul>
+                </div>
+
+                <div class="system-card">
+                    <div class="system-icon">🔧</div>
+                    <h3>Mantenimiento Predictivo Avanzado</h3>
+                    <p>Integración de sensores de vibración (MPU6050) y temperatura (LM35) con algoritmos que anticipan fallos con días de antelación.</p>
+                    <ul class="system-features">
+                        <li>✓ Reducción 70% paradas no planificadas</li>
+                        <li>✓ Extensión vida útil de equipos</li>
+                        <li>✓ Optimización de inventario de repuestos</li>
+                        <li>✓ Scoring de salud 0-100%</li>
+                    </ul>
+                </div>
+
+                <div class="system-card">
+                    <div class="system-icon">📡</div>
+                    <h3>Sistema IoT Integrado</h3>
+                    <p>Plataforma centralizada que consolida datos de temperatura, vibración y corriente para monitoreo holístico de la planta industrial.</p>
+                    <ul class="system-features">
+                        <li>✓ Monitoreo multi-sensor 24/7</li>
+                        <li>✓ Detección de condiciones anómalas</li>
+                        <li>✓ Dashboard web en tiempo real</li>
+                        <li>✓ Arquitectura escalable y modular</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Benefits Section -->
+    <section id="beneficios" class="benefits">
+        <div class="container">
+            <h2 class="section-title">Beneficios Empresariales</h2>
+            
+            <div class="benefits-grid">
+                <div class="benefit-card">
+                    <div class="benefit-number">01</div>
+                    <h3>Eficiencia Operativa</h3>
+                    <p>Los sistemas propuestos generan ahorros entre 20-40% en costos energéticos y mantenimiento, optimizando recursos críticos.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-number">02</div>
+                    <h3>Seguridad Aumentada</h3>
+                    <p>La autenticación biométrica multicapa reduce incidentes de seguridad en más del 90%, protegiendo áreas críticas.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-number">03</div>
+                    <h3>Equilibrio Humano-Tecnológico</h3>
+                    <p>La automatización complementa el talento humano, liberándolo para tareas de mayor valor agregado.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-number">04</div>
+                    <h3>Implementación Gradual</h3>
+                    <p>Proyectos IoT escalables que inician con pilotos controlados antes de despliegues masivos.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-number">05</div>
+                    <h3>Toma de Decisiones Basada en Datos</h3>
+                    <p>Analítica avanzada que proporciona insights accionables para optimización continua.</p>
+                </div>
+
+                <div class="benefit-card">
+                    <div class="benefit-number">06</div>
+                    <h3>Sostenibilidad</h3>
+                    <p>Reducción significativa de huella de carbono mediante optimización energética inteligente.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- References Section -->
+    <section id="referencias" class="references">
+        <div class="container">
+            <h2 class="section-title">Referencias Académicas (APA 7ª Ed.)</h2>
+            
+            <div class="references-list">
+                <div class="reference-item">
+                    <div class="reference-number">1</div>
+                    <div class="reference-text">
+                        Kumar, P. y Singh Gaba, G. (2020). Biometric-Based Robust Access Control Model for Industrial Internet of Things Applications. En M. Liyanage, et al. (Eds.). <em>IoT Security: Advances in Authentication</em> (pp. 133-141). John Wiley & Sons, Incorporated.
+                    </div>
+                </div>
+
+                <div class="reference-item">
+                    <div class="reference-number">2</div>
+                    <div class="reference-text">
+                        Llaneza González, P. (2018). La Internet de las Cosas. En <em>Seguridad y responsabilidad en la internet de las cosas (IoT)</em> (pp. 20-33). Wolters Kluwer España.
+                    </div>
+                </div>
+
+                <div class="reference-item">
+                    <div class="reference-number">3</div>
+                    <div class="reference-text">
+                        Ramírez Ramírez, D. M., González, L. F. y Martínez, S. A. (2023). Tendencias investigativas en el uso de machine learning en la ciberseguridad. <em>Revista Ibérica de Sistemas e Tecnologias de Informação</em>, <em>E62</em>, 60-72.
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-info">
+                <h3>Sobre este Proyecto</h3>
+                <p>Esta demostración interactiva simula la implementación de sistemas IoT en una fábrica inteligente. Los datos mostrados son generados algorítmicamente para representar escenarios reales de operación industrial.</p>
+                <p><strong>Implementación técnica:</strong> Arduino + Sensores IoT (ACS712, MPU6050, LM35)</p>
+                <p><strong>Simulación disponible en:</strong> Tinkercad Circuits</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>Proyecto IoT - Fábrica Inteligente</h4>
+                    <p>Demostración académica de implementación Industrial IoT (IIoT)</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Palabras Clave</h4>
+                    <p>Internet de las Cosas, IIoT, Mantenimiento Predictivo, Fábrica Inteligente, Automatización Industrial, Industria 4.0</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Fecha</h4>
+                    <p>Noviembre 2025</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Sistema IoT Demo. Proyecto Educativo - Todos los datos son simulados.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
