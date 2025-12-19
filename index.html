@@ -12,8 +12,8 @@
     <header class="header">
         <div class="container">
             <div class="header-content">
-                <h1>🏭 Sistema IoT - Fábrica Inteligente</h1>
-                <p>Demostración Interactiva de Implementación Industrial</p>
+                <h1>� Plataforma IoT + IA Integrada</h1>
+                <p>Proyectos de Implementación en Industria 4.0</p>
             </div>
             <div class="header-status">
                 <span class="status-indicator online"></span>
@@ -26,19 +26,75 @@
     <nav class="nav">
         <div class="container">
             <ul class="nav-list">
-                <li><a href="#introduccion" class="nav-link">Introducción</a></li>
-                <li><a href="#dashboard" class="nav-link active">Dashboard</a></li>
-                <li><a href="#sistemas" class="nav-link">Sistemas</a></li>
-                <li><a href="#beneficios" class="nav-link">Beneficios</a></li>
-                <li><a href="#referencias" class="nav-link">Referencias</a></li>
+                <li><a href="#home" class="nav-link">🏠 Inicio</a></li>
+                <li class="nav-separator">SEMANA 3</li>
+                <li><a href="#fabrica-intro" class="nav-link">🏭 Introducción Fábrica</a></li>
+                <li><a href="#dashboard" class="nav-link">📊 Dashboard Industrial</a></li>
+                <li><a href="#sistemas" class="nav-link">⚙️ Sistemas IoT</a></li>
+                <li class="nav-separator">SEMANA 5</li>
+                <li><a href="https://leomos2022.github.io/FUTOROPOLIS/" target="_blank" class="nav-link">🌆 Futurópolis 3D</a></li>
+                <li class="nav-separator">SEMANA 7</li>
+                <li><a href="#agricultura" class="nav-link">🌾 Agricultura Inteligente</a></li>
+                <li class="nav-separator">GENERAL</li>
+                <li><a href="#beneficios" class="nav-link">📈 Beneficios</a></li>
+                <li><a href="#referencias" class="nav-link">📚 Referencias</a></li>
             </ul>
         </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section id="introduccion" class="hero">
+    <!-- Hero Section - Home -->
+    <section id="home" class="hero hero-main">
         <div class="container">
             <div class="hero-content">
+                <h2>Bienvenidos a la Plataforma IoT + IA Integrada</h2>
+                <p class="lead">Explora tres implementaciones de Internet de las Cosas e Inteligencia Artificial en diferentes contextos.</p>
+                
+                <div class="modules-grid">
+                    <div class="module-card" onclick="window.location.href='#fabrica-intro'">
+                        <div class="module-icon">🏭</div>
+                        <h3>Semana 3: Fábrica Inteligente</h3>
+                        <p>Sistema IoT para manufactura industrial con monitoreo energético, mantenimiento predictivo y control de calidad.</p>
+                        <div class="module-stats">
+                            <span class="stat">⚡ -30% Energía</span>
+                            <span class="stat">🔧 -70% Paradas</span>
+                            <span class="stat">📊 3 Sistemas</span>
+                        </div>
+                        <button class="module-btn">Ver Proyecto →</button>
+                    </div>
+                    
+                    <div class="module-card module-card-external" onclick="window.open('https://leomos2022.github.io/FUTOROPOLIS/', '_blank')">
+                        <div class="module-icon">🌆</div>
+                        <h3>Semana 5: Futurópolis - Ciudad Inteligente</h3>
+                        <p>Proyecto interactivo 3D de una Smart City con implementación de IoT para gestión urbana sostenible e inteligente.</p>
+                        <div class="module-stats">
+                            <span class="stat">🏙️ Ciudad 3D</span>
+                            <span class="stat">🚦 Smart Traffic</span>
+                            <span class="stat">💡 IoT Urbano</span>
+                        </div>
+                        <button class="module-btn module-btn-external">Explorar en 3D ↗</button>
+                    </div>
+                    
+                    <div class="module-card" onclick="window.location.href='#agricultura'">
+                        <div class="module-icon">🌾</div>
+                        <h3>Semana 7: Agricultura Inteligente</h3>
+                        <p>Integración IoT + IA para agricultura de precisión con riego automático y detección de plagas por visión computacional.</p>
+                        <div class="module-stats">
+                            <span class="stat">💧 -40% Agua</span>
+                            <span class="stat">🚫 -50% Pesticidas</span>
+                            <span class="stat">🌱 +20% Rendimiento</span>
+                        </div>
+                        <button class="module-btn">Ver Proyecto →</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Fábrica Section - Introducción -->
+    <section id="fabrica-intro" class="hero">
+        <div class="container">
+            <div class="hero-content">
+                <div class="section-badge">SEMANA 3</div>
                 <h2>Transformación Digital en Manufactura</h2>
                 <p class="lead">La Internet de las Cosas (IoT) representa un paradigma tecnológico que revoluciona el contexto empresarial. Esta demostración simula en tiempo real la implementación de tres sistemas IoT críticos para una fábrica inteligente.</p>
                 <div class="hero-stats">
@@ -373,6 +429,197 @@
                     <div class="benefit-number">06</div>
                     <h3>Sostenibilidad</h3>
                     <p>Reducción significativa de huella de carbono mediante optimización energética inteligente.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Agricultura Inteligente Section -->
+    <section id="agricultura" class="agriculture-section">
+        <div class="container">
+            <div class="section-badge agriculture-badge">SEMANA 7</div>
+            <h2 class="section-title">🌾 Integración de IoT e IA en la Agricultura Inteligente</h2>
+            
+            <!-- Caso de Estudio -->
+            <div class="case-study-box">
+                <h3>📋 Caso de Estudio: Granja Moderna</h3>
+                <p class="case-description">
+                    En una granja moderna, se instalan sensores conectados a través de internet de las cosas para monitorear una variedad de factores ambientales como la <strong>humedad del suelo</strong>, la <strong>temperatura</strong>, la <strong>luz solar</strong> y la <strong>presencia de plagas</strong>. Estos sensores recopilan datos en tiempo real, proporcionando una visión detallada y continua del estado del cultivo.
+                </p>
+                <p class="case-description">
+                    La inteligencia artificial analiza estos datos para identificar patrones y tendencias. Por ejemplo, al detectar que ciertos niveles de humedad del suelo están relacionados con el crecimiento óptimo de las plantas, la IA puede <strong>predecir las necesidades de riego y activar los sistemas de riego de manera automática</strong>. Además, mediante el uso de cámaras y algoritmos de visión por computadora, puede identificar la presencia de plagas y determinar el momento adecuado para aplicar pesticidas, minimizando el uso de químicos y reduciendo costos.
+                </p>
+            </div>
+
+            <!-- Dashboard de Agricultura -->
+            <div class="agriculture-dashboard">
+                <h3>🎛️ Dashboard de Agricultura Inteligente</h3>
+                
+                <div class="agri-sensors-grid">
+                    <!-- Sensor de Humedad del Suelo -->
+                    <div class="agri-sensor-card">
+                        <div class="sensor-icon">💧</div>
+                        <h4>Humedad del Suelo</h4>
+                        <div class="sensor-value" id="soil-moisture">--</div>
+                        <div class="sensor-unit">% Humedad</div>
+                        <div class="sensor-status" id="soil-status">Monitoreando...</div>
+                        <div class="sensor-bar">
+                            <div class="sensor-bar-fill" id="soil-bar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Sensor de Temperatura -->
+                    <div class="agri-sensor-card">
+                        <div class="sensor-icon">🌡️</div>
+                        <h4>Temperatura</h4>
+                        <div class="sensor-value" id="agri-temp">--</div>
+                        <div class="sensor-unit">°C</div>
+                        <div class="sensor-status" id="temp-status">Monitoreando...</div>
+                        <div class="sensor-bar">
+                            <div class="sensor-bar-fill" id="temp-bar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <!-- Sensor de Luz Solar -->
+                    <div class="agri-sensor-card">
+                        <div class="sensor-icon">☀️</div>
+                        <h4>Luz Solar</h4>
+                        <div class="sensor-value" id="light-level">--</div>
+                        <div class="sensor-unit">Lux</div>
+                        <div class="sensor-status" id="light-status">Monitoreando...</div>
+                        <div class="sensor-bar">
+                            <div class="sensor-bar-fill" id="light-bar" style="width: 0%"></div>
+                        </div>
+                    </div>
+
+                    <!-- pH del Suelo -->
+                    <div class="agri-sensor-card">
+                        <div class="sensor-icon">⚗️</div>
+                        <h4>pH del Suelo</h4>
+                        <div class="sensor-value" id="soil-ph">--</div>
+                        <div class="sensor-unit">pH</div>
+                        <div class="sensor-status" id="ph-status">Monitoreando...</div>
+                        <div class="sensor-bar">
+                            <div class="sensor-bar-fill" id="ph-bar" style="width: 0%"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Sistema de Riego Automático -->
+                <div class="irrigation-system">
+                    <h4>💦 Sistema de Riego Automático</h4>
+                    <div class="irrigation-status">
+                        <div class="irrigation-indicator" id="irrigation-indicator">
+                            <span class="indicator-dot"></span>
+                            <span id="irrigation-text">Sistema en Espera</span>
+                        </div>
+                        <div class="irrigation-info" id="irrigation-info">
+                            Esperando datos de sensores...
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Detección de Plagas -->
+                <div class="pest-detection">
+                    <h4>🔍 Detección de Plagas (Computer Vision)</h4>
+                    <div class="pest-status">
+                        <div class="pest-indicator" id="pest-indicator">
+                            <span class="indicator-dot ok"></span>
+                            <span id="pest-text">No se detectan plagas</span>
+                        </div>
+                        <div class="pest-info" id="pest-info">
+                            Sistema de visión activo - Análisis continuo
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Beneficios de Sostenibilidad -->
+            <div class="sustainability-section">
+                <h3>🌱 Beneficios de Sostenibilidad</h3>
+                <div class="benefits-grid">
+                    <div class="benefit-card">
+                        <div class="benefit-icon">💧</div>
+                        <h4>Reducción de Agua</h4>
+                        <div class="benefit-value">20-40%</div>
+                        <p>Ahorro mediante riego de precisión predictivo</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🚫</div>
+                        <h4>Menos Pesticidas</h4>
+                        <div class="benefit-value">30-50%</div>
+                        <p>Aplicación dirigida solo donde es necesario</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🌾</div>
+                        <h4>Mayor Rendimiento</h4>
+                        <div class="benefit-value">10-20%</div>
+                        <p>Optimización de condiciones de cultivo</p>
+                    </div>
+                    <div class="benefit-card">
+                        <div class="benefit-icon">🌍</div>
+                        <h4>Huella de Carbono</h4>
+                        <div class="benefit-value">-25%</div>
+                        <p>Reducción en emisiones agrícolas</p>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Referencias Académicas -->
+            <div class="academic-references">
+                <h3>📚 Referencias Académicas</h3>
+                <div class="reference-list">
+                    <div class="reference-item">
+                        <div class="reference-number">1</div>
+                        <div class="reference-text">
+                            Kamilaris, A., Kartakoullis, A., & Prenafeta-Boldú, F. X. (2017). A review on the practice of big data analysis in agriculture. <em>Computers and Electronics in Agriculture</em>, <em>143</em>, 23-37.
+                        </div>
+                    </div>
+                    <div class="reference-item">
+                        <div class="reference-number">2</div>
+                        <div class="reference-text">
+                            Klerkx, L., Jakku, E., & Labarthe, P. (2019). A review of social science on digital agriculture, smart farming and agriculture 4.0. <em>NJAS - Wageningen Journal of Life Sciences</em>, <em>90-91</em>, 100315.
+                        </div>
+                    </div>
+                    <div class="reference-item">
+                        <div class="reference-number">3</div>
+                        <div class="reference-text">
+                            Talavera, J. M., et al. (2017). Review of IoT applications in agro-industrial and environmental fields. <em>Computers and Electronics in Agriculture</em>, <em>142</em>, Part A, 283-297.
+                        </div>
+                    </div>
+                    <div class="reference-item">
+                        <div class="reference-number">4</div>
+                        <div class="reference-text">
+                            Wolfert, S., Ge, L., Verdouw, C., & Bogaardt, M. J. (2017). Big Data in Smart Farming – A review. <em>Agricultural Systems</em>, <em>153</em>, 69-80.
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Implementación Arduino -->
+            <div class="arduino-implementation">
+                <h3>💻 Implementación Práctica con Arduino</h3>
+                <p>Este sistema ha sido implementado y puede ser simulado en <strong>Tinkercad</strong> o ejecutado en hardware Arduino real.</p>
+                <div class="implementation-details">
+                    <div class="impl-item">
+                        <strong>Sensores utilizados:</strong>
+                        <ul>
+                            <li>DHT22 - Temperatura y humedad ambiental</li>
+                            <li>Sensor capacitivo - Humedad del suelo</li>
+                            <li>LDR - Medición de luz solar</li>
+                            <li>Sensor de pH (simulado)</li>
+                        </ul>
+                    </div>
+                    <div class="impl-item">
+                        <strong>Actuadores:</strong>
+                        <ul>
+                            <li>Relay para bomba de agua (riego automático)</li>
+                            <li>LEDs indicadores de estado</li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="code-location">
+                    <p>📂 <strong>Código completo disponible en:</strong> <code>practica_arduino/agricultura_inteligente/</code></p>
                 </div>
             </div>
         </div>

@@ -159,6 +159,17 @@ body {
     border-bottom-color: var(--primary-color);
 }
 
+/* Separadores de menú */
+.nav-separator {
+    color: var(--text-muted);
+    font-size: 0.75rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    padding: 0 var(--spacing-md);
+    margin-top: var(--spacing-sm);
+    opacity: 0.6;
+}
+
 /* ========================================
    HERO SECTION
    ======================================== */
@@ -167,6 +178,203 @@ body {
     padding: var(--spacing-2xl) 0;
     background: linear-gradient(135deg, rgba(37, 99, 235, 0.1) 0%, rgba(124, 58, 237, 0.1) 100%);
     border-bottom: 1px solid rgba(148, 163, 184, 0.1);
+}
+
+.hero-main {
+    min-height: 80vh;
+    display: flex;
+    align-items: center;
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-main::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: radial-gradient(circle at 30% 50%, rgba(37, 99, 235, 0.15) 0%, transparent 50%),
+                radial-gradient(circle at 70% 50%, rgba(16, 185, 129, 0.15) 0%, transparent 50%);
+    animation: gradient-shift 10s ease infinite;
+}
+
+@keyframes gradient-shift {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.7; }
+}
+
+/* Badges de sección */
+.section-badge {
+    display: inline-block;
+    background: linear-gradient(135deg, #2563eb, #1e40af);
+    color: white;
+    padding: var(--spacing-xs) var(--spacing-lg);
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    letter-spacing: 0.1em;
+    margin-bottom: var(--spacing-md);
+    box-shadow: 0 4px 12px rgba(37, 99, 235, 0.3);
+}
+
+.agriculture-badge {
+    background: linear-gradient(135deg, #10b981, #059669);
+    box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+}
+
+/* Grid de módulos en home */
+.modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+    gap: var(--spacing-xl);
+    margin-top: var(--spacing-2xl);
+    position: relative;
+    z-index: 1;
+}
+
+@media (min-width: 1200px) {
+    .modules-grid {
+        grid-template-columns: repeat(3, 1fr);
+    }
+}
+
+@media (max-width: 1024px) {
+    .modules-grid {
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    }
+}
+
+.module-card {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    padding: var(--spacing-xl);
+    border-radius: 16px;
+    border: 2px solid rgba(255, 255, 255, 0.1);
+    transition: var(--transition);
+    cursor: pointer;
+    position: relative;
+    overflow: hidden;
+}
+
+.module-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: linear-gradient(135deg, rgba(37, 99, 235, 0.1), rgba(124, 58, 237, 0.1));
+    opacity: 0;
+    transition: var(--transition);
+}
+
+.module-card:hover {
+    transform: translateY(-10px);
+    border-color: var(--primary-color);
+    box-shadow: 0 20px 40px rgba(37, 99, 235, 0.4);
+}
+
+.module-card:hover::before {
+    opacity: 1;
+}
+
+.module-card:nth-child(2):hover {
+    border-color: #10b981;
+    box-shadow: 0 20px 40px rgba(16, 185, 129, 0.4);
+}
+
+.module-icon {
+    font-size: 4rem;
+    margin-bottom: var(--spacing-lg);
+    animation: float 3s ease-in-out infinite;
+}
+
+.module-card h3 {
+    color: var(--text-primary);
+    font-size: 1.5rem;
+    margin-bottom: var(--spacing-md);
+    position: relative;
+    z-index: 1;
+}
+
+.module-card p {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+    z-index: 1;
+}
+
+.module-stats {
+    display: flex;
+    gap: var(--spacing-md);
+    flex-wrap: wrap;
+    margin-bottom: var(--spacing-lg);
+    position: relative;
+    z-index: 1;
+}
+
+.module-stats .stat {
+    background: rgba(255, 255, 255, 0.05);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: 20px;
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.module-btn {
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    color: white;
+    border: none;
+    padding: var(--spacing-md) var(--spacing-xl);
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: var(--transition);
+    width: 100%;
+    position: relative;
+    z-index: 1;
+}
+
+.module-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 8px 20px rgba(37, 99, 235, 0.5);
+}
+
+/* Estilos para módulo de ciudad inteligente (Semana 5 - externo) */
+.module-card-external {
+    background: linear-gradient(135deg, #4c1d95 0%, #6d28d9 100%);
+}
+
+.module-card-external:hover {
+    border-color: #a855f7;
+    box-shadow: 0 20px 40px rgba(168, 85, 247, 0.4);
+}
+
+.module-btn-external {
+    background: linear-gradient(135deg, #a855f7, #7c3aed);
+}
+
+.module-btn-external:hover {
+    box-shadow: 0 8px 20px rgba(168, 85, 247, 0.5);
+}
+
+/* Estilos para módulo de agricultura (Semana 7) */
+.module-card:nth-child(3) .module-btn {
+    background: linear-gradient(135deg, #10b981, #059669);
+}
+
+.module-card:nth-child(3) .module-btn:hover {
+    box-shadow: 0 8px 20px rgba(16, 185, 129, 0.5);
+}
+
+.module-card:nth-child(3):hover {
+    border-color: #10b981;
+    box-shadow: 0 20px 40px rgba(16, 185, 129, 0.4);
 }
 
 .hero-content {
@@ -1043,7 +1251,7 @@ body {
     }
     
     .header p {
-        font-size: 1rem;
+        font-size: 0.9rem;
     }
     
     .hero h2 {
@@ -1052,6 +1260,42 @@ body {
     
     .lead {
         font-size: 1.1rem;
+    }
+    
+    /* Menú móvil */
+    .nav-list {
+        flex-direction: column;
+        gap: var(--spacing-xs);
+    }
+    
+    .nav-link {
+        padding: var(--spacing-sm) var(--spacing-md);
+        border-bottom: none;
+        border-left: 3px solid transparent;
+    }
+    
+    .nav-link.active {
+        border-left-color: var(--primary-color);
+        background: rgba(37, 99, 235, 0.1);
+    }
+    
+    .nav-separator {
+        padding: var(--spacing-md) var(--spacing-md) var(--spacing-xs);
+        border-top: 1px solid rgba(255, 255, 255, 0.1);
+        margin-top: var(--spacing-md);
+    }
+    
+    /* Módulos grid */
+    .modules-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .module-icon {
+        font-size: 3rem;
+    }
+    
+    .module-card h3 {
+        font-size: 1.3rem;
     }
     
     .sensor-grid {
@@ -1120,5 +1364,405 @@ html {
         animation-duration: 0.01ms !important;
         animation-iteration-count: 1 !important;
         transition-duration: 0.01ms !important;
+    }
+}
+/* ========================================
+   SECCIÓN DE AGRICULTURA INTELIGENTE
+   ======================================== */
+
+.agriculture-section {
+    background: linear-gradient(135deg, #1e3a1f 0%, #0f172a 100%);
+    padding: var(--spacing-2xl) 0;
+    min-height: 100vh;
+}
+
+.case-study-box {
+    background: var(--bg-secondary);
+    border-left: 4px solid #10b981;
+    padding: var(--spacing-xl);
+    border-radius: 8px;
+    margin-bottom: var(--spacing-xl);
+    box-shadow: var(--shadow-lg);
+}
+
+.case-study-box h3 {
+    color: #10b981;
+    margin-bottom: var(--spacing-md);
+    font-size: 1.5rem;
+}
+
+.case-description {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-md);
+}
+
+.case-description strong {
+    color: var(--text-primary);
+    font-weight: 600;
+}
+
+/* Dashboard de Agricultura */
+.agriculture-dashboard {
+    background: var(--bg-secondary);
+    padding: var(--spacing-xl);
+    border-radius: 12px;
+    margin-bottom: var(--spacing-xl);
+    box-shadow: var(--shadow-lg);
+}
+
+.agriculture-dashboard h3 {
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-lg);
+    font-size: 1.75rem;
+    text-align: center;
+}
+
+.agri-sensors-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-xl);
+}
+
+.agri-sensor-card {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    padding: var(--spacing-lg);
+    border-radius: 12px;
+    text-align: center;
+    transition: var(--transition);
+    border: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.agri-sensor-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.3);
+    border-color: #10b981;
+}
+
+.sensor-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+    animation: float 3s ease-in-out infinite;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0px); }
+    50% { transform: translateY(-10px); }
+}
+
+.agri-sensor-card h4 {
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1.1rem;
+}
+
+.sensor-value {
+    font-size: 2.5rem;
+    font-weight: bold;
+    color: #10b981;
+    margin: var(--spacing-md) 0;
+}
+
+.sensor-unit {
+    color: var(--text-muted);
+    font-size: 0.9rem;
+    margin-bottom: var(--spacing-sm);
+}
+
+.sensor-status {
+    padding: var(--spacing-xs) var(--spacing-md);
+    background: rgba(16, 185, 129, 0.2);
+    color: #10b981;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    display: inline-block;
+    margin-bottom: var(--spacing-md);
+}
+
+.sensor-status.warning {
+    background: rgba(245, 158, 11, 0.2);
+    color: var(--warning-color);
+}
+
+.sensor-status.danger {
+    background: rgba(239, 68, 68, 0.2);
+    color: var(--danger-color);
+}
+
+.sensor-bar {
+    width: 100%;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.1);
+    border-radius: 4px;
+    overflow: hidden;
+}
+
+.sensor-bar-fill {
+    height: 100%;
+    background: linear-gradient(90deg, #10b981, #059669);
+    transition: width 0.5s ease;
+}
+
+/* Sistema de Riego */
+.irrigation-system {
+    background: linear-gradient(135deg, #0c4a6e 0%, #075985 100%);
+    padding: var(--spacing-lg);
+    border-radius: 12px;
+    margin-bottom: var(--spacing-lg);
+}
+
+.irrigation-system h4 {
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.3rem;
+}
+
+.irrigation-status {
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+}
+
+.irrigation-indicator,
+.pest-indicator {
+    display: flex;
+    align-items: center;
+    gap: var(--spacing-md);
+    font-size: 1.1rem;
+    color: var(--text-primary);
+}
+
+.indicator-dot {
+    width: 16px;
+    height: 16px;
+    border-radius: 50%;
+    background: #94a3b8;
+    animation: pulse 2s ease-in-out infinite;
+}
+
+.indicator-dot.active {
+    background: #10b981;
+    box-shadow: 0 0 20px #10b981;
+}
+
+.indicator-dot.ok {
+    background: #10b981;
+}
+
+.indicator-dot.warning {
+    background: var(--warning-color);
+}
+
+.indicator-dot.danger {
+    background: var(--danger-color);
+    animation: pulse-red 1s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.5; }
+}
+
+@keyframes pulse-red {
+    0%, 100% { 
+        opacity: 1;
+        box-shadow: 0 0 10px var(--danger-color);
+    }
+    50% { 
+        opacity: 0.7;
+        box-shadow: 0 0 20px var(--danger-color);
+    }
+}
+
+.irrigation-info,
+.pest-info {
+    color: var(--text-secondary);
+    font-size: 0.95rem;
+    padding-left: calc(16px + var(--spacing-md));
+}
+
+/* Detección de Plagas */
+.pest-detection {
+    background: linear-gradient(135deg, #581c87 0%, #7c3aed 100%);
+    padding: var(--spacing-lg);
+    border-radius: 12px;
+}
+
+.pest-detection h4 {
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-md);
+    font-size: 1.3rem;
+}
+
+/* Beneficios de Sostenibilidad */
+.sustainability-section {
+    background: var(--bg-secondary);
+    padding: var(--spacing-xl);
+    border-radius: 12px;
+    margin-bottom: var(--spacing-xl);
+    box-shadow: var(--shadow-lg);
+}
+
+.sustainability-section h3 {
+    color: #10b981;
+    margin-bottom: var(--spacing-lg);
+    font-size: 1.75rem;
+    text-align: center;
+}
+
+.benefits-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: var(--spacing-lg);
+}
+
+.benefit-card {
+    background: linear-gradient(135deg, #1e293b 0%, #334155 100%);
+    padding: var(--spacing-lg);
+    border-radius: 12px;
+    text-align: center;
+    border: 2px solid transparent;
+    transition: var(--transition);
+}
+
+.benefit-card:hover {
+    border-color: #10b981;
+    transform: scale(1.05);
+    box-shadow: 0 10px 30px rgba(16, 185, 129, 0.2);
+}
+
+.benefit-icon {
+    font-size: 3rem;
+    margin-bottom: var(--spacing-md);
+}
+
+.benefit-card h4 {
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-sm);
+    font-size: 1rem;
+}
+
+.benefit-value {
+    font-size: 2rem;
+    font-weight: bold;
+    color: #10b981;
+    margin: var(--spacing-md) 0;
+}
+
+.benefit-card p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+/* Referencias Académicas */
+.academic-references {
+    background: var(--bg-secondary);
+    padding: var(--spacing-xl);
+    border-radius: 12px;
+    margin-bottom: var(--spacing-xl);
+    box-shadow: var(--shadow-lg);
+}
+
+.academic-references h3 {
+    color: var(--text-primary);
+    margin-bottom: var(--spacing-lg);
+    font-size: 1.75rem;
+}
+
+/* Implementación Arduino */
+.arduino-implementation {
+    background: linear-gradient(135deg, #1e3a8a 0%, #1e40af 100%);
+    padding: var(--spacing-xl);
+    border-radius: 12px;
+    box-shadow: var(--shadow-lg);
+    color: var(--text-primary);
+}
+
+.arduino-implementation h3 {
+    margin-bottom: var(--spacing-md);
+    font-size: 1.75rem;
+}
+
+.arduino-implementation p {
+    color: var(--text-secondary);
+    line-height: 1.8;
+    margin-bottom: var(--spacing-lg);
+}
+
+.implementation-details {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: var(--spacing-lg);
+    margin-bottom: var(--spacing-lg);
+}
+
+.impl-item {
+    background: rgba(255, 255, 255, 0.05);
+    padding: var(--spacing-lg);
+    border-radius: 8px;
+    border-left: 3px solid #3b82f6;
+}
+
+.impl-item strong {
+    display: block;
+    margin-bottom: var(--spacing-md);
+    color: #3b82f6;
+    font-size: 1.1rem;
+}
+
+.impl-item ul {
+    list-style: none;
+    padding-left: 0;
+}
+
+.impl-item li {
+    padding: var(--spacing-xs) 0;
+    color: var(--text-secondary);
+}
+
+.impl-item li:before {
+    content: "▸ ";
+    color: #3b82f6;
+    font-weight: bold;
+    margin-right: var(--spacing-sm);
+}
+
+.code-location {
+    background: rgba(0, 0, 0, 0.3);
+    padding: var(--spacing-lg);
+    border-radius: 8px;
+    border: 1px solid rgba(59, 130, 246, 0.3);
+}
+
+.code-location code {
+    background: rgba(59, 130, 246, 0.2);
+    padding: var(--spacing-xs) var(--spacing-md);
+    border-radius: 4px;
+    color: #93c5fd;
+    font-family: 'Courier New', monospace;
+}
+
+/* Responsive para agricultura */
+@media (max-width: 768px) {
+    .agri-sensors-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .benefits-grid {
+        grid-template-columns: 1fr;
+    }
+    
+    .implementation-details {
+        grid-template-columns: 1fr;
+    }
+    
+    .sensor-value {
+        font-size: 2rem;
+    }
+    
+    .benefit-value {
+        font-size: 1.75rem;
     }
 }

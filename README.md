@@ -44,26 +44,50 @@ IOT/
 ├── 📄 README.md                          # Este archivo
 ├── 📄 INSTRUCCIONES_USO.md               # ⭐ GUÍA MAESTRA - LEER PRIMERO
 ├── 📄 RESUMEN_EJECUTIVO.md               # Visión general y métricas
+├── 📄 CHANGELOG.md                       # Registro de cambios y versiones
 │
 ├── 📂 documentos/                        # Textos del foro
-│   ├── Integrante_1_Aporte_Principal.md     # 1,847 palabras
+│   ├── Integrante_1_Aporte_Principal.md     # 1,847 palabras (Fábrica IoT)
 │   ├── Integrante_2_Retroalimentacion.md    # 1,421 palabras
 │   ├── Integrante_3_Retroalimentacion.md    # 1,783 palabras
 │   ├── Integrante_4_Conclusion.md           # 2,134 palabras
-│   └── Referencias_APA.md                    # 50+ referencias formato APA 7
+│   ├── Semana_7_Agricultura_Inteligente.md  # 3,847 palabras (IoT + IA en Agricultura)
+│   ├── Referencias_APA.md                   # 50+ referencias formato APA 7
+│   └── Referencias_Agricultura_IA.md        # 25+ referencias agricultura inteligente
 │
 ├── 📂 practica_arduino/                  # Código Arduino
 │   ├── sistema_iot_fabrica/
 │   │   └── sistema_iot_fabrica.ino          # Sistema integrado (temp, vib, corriente)
 │   ├── mantenimiento_predictivo/
 │   │   └── mantenimiento_predictivo.ino     # Análisis predictivo con IA básica
-│   └── gestion_energetica/
-│       └── gestion_energetica.ino           # Optimización energética inteligente
+│   ├── gestion_energetica/
+│   │   └── gestion_energetica.ino           # Optimización energética inteligente
+│   └── agricultura_inteligente/
+│       └── agricultura_inteligente.ino      # Sistema IoT+IA para agricultura
+│
+├── 📂 demo_web/                          # Demo web interactiva
+│   ├── index.html                           # Aplicación web (3 módulos integrados)
+│   ├── script.js                            # Lógica y simulaciones
+│   └── styles.css                           # Estilos modernos
 │
 └── 📂 guias/                             # Tutoriales paso a paso
     ├── Guia_Tinkercad.md                     # Simulación online (SIN hardware)
     └── Guia_Arduino_IDE.md                   # Implementación con hardware real
 ```
+
+---
+
+## 🌐 Módulos Disponibles
+
+### 🏭 Semana 3: Fábrica Inteligente (IIoT)
+Sistema completo de IoT industrial con dashboard interactivo, código Arduino y documentación académica.
+
+### 🏙️ Semana 5: Futurópolis - Ciudad Inteligente 3D
+Proyecto interactivo de Smart City con visualización 3D.  
+**🔗 Enlace externo**: [https://leomos2022.github.io/FUTOROPOLIS/](https://leomos2022.github.io/FUTOROPOLIS/)
+
+### 🌾 Semana 7: Agricultura Inteligente (IoT + IA)
+Sistema de agricultura de precisión con riego automático y detección de plagas por computer vision.
 
 ---
 
@@ -159,6 +183,55 @@ Optimización automática de consumo eléctrico.
 ### Adicionales
 
 Ver archivo completo: [`documentos/Referencias_APA.md`](documentos/Referencias_APA.md) (50+ referencias)
+
+---
+
+## 🌾 NUEVO: Semana 7 - Agricultura Inteligente con IoT e IA
+
+### Contenido Académico Completo
+
+**Documento principal**: [`documentos/Semana_7_Agricultura_Inteligente.md`](documentos/Semana_7_Agricultura_Inteligente.md)
+
+- **Extensión**: 3,847 palabras
+- **Tema**: Integración de IoT e Inteligencia Artificial en Agricultura de Precisión
+- **Incluye**:
+  - Análisis del caso de estudio (granja moderna)
+  - Sistemas de riego predictivo con IA
+  - Computer vision para detección de plagas
+  - Aplicaciones adicionales (ganadería, agricultura vertical, blockchain)
+  - Análisis de sostenibilidad (reducción agua, pesticidas, huella carbono)
+  - Desafíos de implementación
+  - 25+ referencias académicas en formato APA
+
+### Demostración Práctica Arduino
+
+**Código**: [`practica_arduino/agricultura_inteligente/agricultura_inteligente.ino`](practica_arduino/agricultura_inteligente/agricultura_inteligente.ino)
+
+**Sensores implementados**:
+- ✅ DHT22 - Temperatura y humedad ambiental
+- ✅ Sensor capacitivo - Humedad del suelo
+- ✅ LDR (fotoresistor) - Medición de luz solar
+- ✅ Sensor de pH (simulado con potenciómetro)
+- ✅ Relay - Bomba de agua (riego automático)
+- ✅ LEDs - Indicadores de estado
+
+**Características del sistema**:
+- 💧 Riego automático predictivo basado en IA
+- 🌡️ Análisis de temperatura y evapotranspiración
+- 📊 Monitoreo en tiempo real de condiciones de cultivo
+- ⚗️ Control de pH del suelo
+- 🎯 Algoritmo de decisión inteligente para optimizar riego
+
+### Aplicación Web Interactiva
+
+**Página web con módulo de agricultura**: [`index.html`](index.html)
+
+Abre el archivo `index.html` en tu navegador para ver:
+- Dashboard en tiempo real con sensores simulados
+- Sistema de riego automático con indicadores visuales
+- Detección de plagas mediante computer vision
+- Métricas de sostenibilidad (ahorro agua, reducción pesticidas)
+- Referencias académicas integradas
 
 ---
 

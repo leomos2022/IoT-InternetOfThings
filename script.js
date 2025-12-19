@@ -515,3 +515,323 @@ window.IoTDashboard = {
         addLog('info', '🔄 Simulación reiniciada');
     }
 };
+// ========================================
+// SISTEMA DE AGRICULTURA INTELIGENTE
+// ========================================
+
+const AGRI_CONFIG = {
+    soilMoisture: { min: 20, max: 80, optimal: [40, 70] },
+    temperature: { min: 15, max: 35, optimal: [18, 28] },
+    light: { min: 200, max: 1000, optimal: [400, 900] },
+    pH: { min: 5.0, max: 8.5, optimal: [6.0, 7.5] },
+    irrigationCooldown: 30000, // 30 segundos
+    updateInterval: 3000 // 3 segundos
+};
+
+let agriState = {
+    soilMoisture: 50,
+    temperature: 22,
+    light: 600,
+    pH: 6.8,
+    irrigating: false,
+    lastIrrigation: 0,
+    pestDetected: false
+};
+
+function initAgricultureSystem() {
+    // Verificar si estamos en la página con el módulo de agricultura
+    if (!document.getElementById('soil-moisture')) return;
+    
+    console.log('🌾 Iniciando Sistema de Agricultura Inteligente');
+    
+    // Iniciar simulación de sensores
+    setInterval(updateAgricultureSensors, AGRI_CONFIG.updateInterval);
+    
+    // Primera actualización inmediata
+    updateAgricultureSensors();
+}
+
+function updateAgricultureSensors() {
+    // Simular lecturas de sensores con variación natural
+    agriState.soilMoisture += (Math.random() - 0.5) * 5;
+    agriState.soilMoisture = Math.max(AGRI_CONFIG.soilMoisture.min, 
+                                       Math.min(AGRI_CONFIG.soilMoisture.max, agriState.soilMoisture));
+    
+    agriState.temperature += (Math.random() - 0.5) * 2;
+    agriState.temperature = Math.max(AGRI_CONFIG.temperature.min, 
+                                      Math.min(AGRI_CONFIG.temperature.max, agriState.temperature));
+    
+    agriState.light += (Math.random() - 0.5) * 50;
+    agriState.light = Math.max(AGRI_CONFIG.light.min, 
+                                Math.min(AGRI_CONFIG.light.max, agriState.light));
+    
+    agriState.pH += (Math.random() - 0.5) * 0.2;
+    agriState.pH = Math.max(AGRI_CONFIG.pH.min, 
+                             Math.min(AGRI_CONFIG.pH.max, agriState.pH));
+    
+    // Simular detección de plagas (5% de probabilidad)
+    if (Math.random() < 0.05 && !agriState.pestDetected) {
+        agriState.pestDetected = true;
+        setTimeout(() => { agriState.pestDetected = false; }, 15000);
+    }
+    
+    // Actualizar UI
+    updateAgricultureUI();
+    
+    // Verificar necesidad de riego
+    checkIrrigationNeeds();
+}
+
+function updateAgricultureUI() {
+    // Actualizar humedad del suelo
+    const soilMoistureEl = document.getElementById('soil-moisture');
+    const soilStatusEl = document.getElementById('soil-status');
+    const soilBarEl = document.getElementById('soil-bar');
+    
+    if (soilMoistureEl) {
+        soilMoistureEl.textContent = agriState.soilMoisture.toFixed(1);
+        soilBarEl.style.width = `${agriState.soilMoisture}%`;
+        
+        if (agriState.soilMoisture < AGRI_CONFIG.soilMoisture.optimal[0]) {
+            soilStatusEl.textContent = '⚠️ Bajo - Requiere riego';
+            soilStatusEl.className = 'sensor-status warning';
+            soilBarEl.style.background = 'linear-gradient(90deg, #f59e0b, #d97706)';
+        } else if (agriState.soilMoisture > AGRI_CONFIG.soilMoisture.optimal[1]) {
+            soilStatusEl.textContent = '⚠️ Alto - Riesgo de pudrición';
+            soilStatusEl.className = 'sensor-status warning';
+            soilBarEl.style.background = 'linear-gradient(90deg, #06b6d4, #0891b2)';
+        } else {
+            soilStatusEl.textContent = '✓ Óptimo';
+            soilStatusEl.className = 'sensor-status';
+            soilBarEl.style.background = 'linear-gradient(90deg, #10b981, #059669)';
+        }
+    }
+    
+    // Actualizar temperatura
+    const tempEl = document.getElementById('agri-temp');
+    const tempStatusEl = document.getElementById('temp-status');
+    const tempBarEl = document.getElementById('temp-bar');
+    
+    if (tempEl) {
+        tempEl.textContent = agriState.temperature.toFixed(1);
+        const tempPercent = ((agriState.temperature - AGRI_CONFIG.temperature.min) / 
+                             (AGRI_CONFIG.temperature.max - AGRI_CONFIG.temperature.min)) * 100;
+        tempBarEl.style.width = `${tempPercent}%`;
+        
+        if (agriState.temperature < AGRI_CONFIG.temperature.optimal[0]) {
+            tempStatusEl.textContent = '❄️ Frío';
+            tempStatusEl.className = 'sensor-status warning';
+            tempBarEl.style.background = 'linear-gradient(90deg, #06b6d4, #0891b2)';
+        } else if (agriState.temperature > AGRI_CONFIG.temperature.optimal[1]) {
+            tempStatusEl.textContent = '🔥 Calor';
+            tempStatusEl.className = 'sensor-status danger';
+            tempBarEl.style.background = 'linear-gradient(90deg, #ef4444, #dc2626)';
+        } else {
+            tempStatusEl.textContent = '✓ Óptimo';
+            tempStatusEl.className = 'sensor-status';
+            tempBarEl.style.background = 'linear-gradient(90deg, #10b981, #059669)';
+        }
+    }
+    
+    // Actualizar luz
+    const lightEl = document.getElementById('light-level');
+    const lightStatusEl = document.getElementById('light-status');
+    const lightBarEl = document.getElementById('light-bar');
+    
+    if (lightEl) {
+        lightEl.textContent = Math.round(agriState.light);
+        const lightPercent = ((agriState.light - AGRI_CONFIG.light.min) / 
+                              (AGRI_CONFIG.light.max - AGRI_CONFIG.light.min)) * 100;
+        lightBarEl.style.width = `${lightPercent}%`;
+        
+        if (agriState.light < AGRI_CONFIG.light.optimal[0]) {
+            lightStatusEl.textContent = '🌙 Baja luminosidad';
+            lightStatusEl.className = 'sensor-status warning';
+        } else if (agriState.light > AGRI_CONFIG.light.optimal[1]) {
+            lightStatusEl.textContent = '☀️ Alta luminosidad';
+            lightStatusEl.className = 'sensor-status';
+        } else {
+            lightStatusEl.textContent = '✓ Óptimo';
+            lightStatusEl.className = 'sensor-status';
+        }
+    }
+    
+    // Actualizar pH
+    const phEl = document.getElementById('soil-ph');
+    const phStatusEl = document.getElementById('ph-status');
+    const phBarEl = document.getElementById('ph-bar');
+    
+    if (phEl) {
+        phEl.textContent = agriState.pH.toFixed(1);
+        const phPercent = ((agriState.pH - AGRI_CONFIG.pH.min) / 
+                           (AGRI_CONFIG.pH.max - AGRI_CONFIG.pH.min)) * 100;
+        phBarEl.style.width = `${phPercent}%`;
+        
+        if (agriState.pH < AGRI_CONFIG.pH.optimal[0]) {
+            phStatusEl.textContent = '🔴 Ácido';
+            phStatusEl.className = 'sensor-status warning';
+            phBarEl.style.background = 'linear-gradient(90deg, #f59e0b, #d97706)';
+        } else if (agriState.pH > AGRI_CONFIG.pH.optimal[1]) {
+            phStatusEl.textContent = '🔵 Alcalino';
+            phStatusEl.className = 'sensor-status warning';
+            phBarEl.style.background = 'linear-gradient(90deg, #3b82f6, #2563eb)';
+        } else {
+            phStatusEl.textContent = '✓ Neutral';
+            phStatusEl.className = 'sensor-status';
+            phBarEl.style.background = 'linear-gradient(90deg, #10b981, #059669)';
+        }
+    }
+    
+    // Actualizar detección de plagas
+    updatePestDetection();
+}
+
+function checkIrrigationNeeds() {
+    const now = Date.now();
+    const irrigationIndicator = document.getElementById('irrigation-indicator');
+    const irrigationText = document.getElementById('irrigation-text');
+    const irrigationInfo = document.getElementById('irrigation-info');
+    
+    if (!irrigationIndicator) return;
+    
+    // Verificar si necesita riego
+    const needsIrrigation = agriState.soilMoisture < AGRI_CONFIG.soilMoisture.optimal[0];
+    const canIrrigate = (now - agriState.lastIrrigation) > AGRI_CONFIG.irrigationCooldown;
+    
+    if (agriState.irrigating) {
+        // Ya está regando
+        irrigationIndicator.querySelector('.indicator-dot').className = 'indicator-dot active';
+        irrigationText.textContent = '💧 Riego en Proceso';
+        irrigationInfo.textContent = 'Sistema de riego activo - Aplicando agua de precisión';
+    } else if (needsIrrigation && canIrrigate) {
+        // Activar riego
+        activateIrrigation();
+    } else if (needsIrrigation && !canIrrigate) {
+        // Necesita riego pero está en cooldown
+        const remainingTime = Math.ceil((AGRI_CONFIG.irrigationCooldown - (now - agriState.lastIrrigation)) / 1000);
+        irrigationIndicator.querySelector('.indicator-dot').className = 'indicator-dot warning';
+        irrigationText.textContent = '⏳ En Espera';
+        irrigationInfo.textContent = `Próximo riego en ${remainingTime} segundos`;
+    } else {
+        // No necesita riego
+        irrigationIndicator.querySelector('.indicator-dot').className = 'indicator-dot ok';
+        irrigationText.textContent = '✓ Sistema en Espera';
+        irrigationInfo.textContent = 'Humedad del suelo en niveles óptimos';
+    }
+}
+
+function activateIrrigation() {
+    agriState.irrigating = true;
+    agriState.lastIrrigation = Date.now();
+    
+    const irrigationIndicator = document.getElementById('irrigation-indicator');
+    const irrigationText = document.getElementById('irrigation-text');
+    const irrigationInfo = document.getElementById('irrigation-info');
+    
+    irrigationIndicator.querySelector('.indicator-dot').className = 'indicator-dot active';
+    irrigationText.textContent = '💧 Riego Activado';
+    irrigationInfo.textContent = 'IA detectó baja humedad - Activando riego predictivo';
+    
+    // Simular duración de riego
+    let duration = 5000; // 5 segundos base
+    
+    // Ajustar duración según temperatura (más calor = más riego)
+    if (agriState.temperature > AGRI_CONFIG.temperature.optimal[1]) {
+        duration *= 1.5;
+        irrigationInfo.textContent = 'IA detectó temperatura alta - Extendiendo tiempo de riego (+50%)';
+    }
+    
+    // Incrementar humedad gradualmente durante el riego
+    const incrementPerSecond = 10 / (duration / 1000);
+    const irrigationInterval = setInterval(() => {
+        agriState.soilMoisture += incrementPerSecond / 3;
+    }, 1000);
+    
+    setTimeout(() => {
+        clearInterval(irrigationInterval);
+        agriState.irrigating = false;
+        irrigationIndicator.querySelector('.indicator-dot').className = 'indicator-dot ok';
+        irrigationText.textContent = '✓ Riego Completado';
+        irrigationInfo.textContent = 'Sistema en modo de monitoreo continuo';
+    }, duration);
+}
+
+function updatePestDetection() {
+    const pestIndicator = document.getElementById('pest-indicator');
+    const pestText = document.getElementById('pest-text');
+    const pestInfo = document.getElementById('pest-info');
+    
+    if (!pestIndicator) return;
+    
+    if (agriState.pestDetected) {
+        pestIndicator.querySelector('.indicator-dot').className = 'indicator-dot danger';
+        pestText.textContent = '⚠️ Plagas Detectadas';
+        pestInfo.textContent = 'Computer Vision identificó presencia de pulgones - Recomendando aplicación localizada de bioinsecticida';
+    } else {
+        pestIndicator.querySelector('.indicator-dot').className = 'indicator-dot ok';
+        pestText.textContent = '✓ No se detectan plagas';
+        pestInfo.textContent = 'Sistema de visión activo - Análisis continuo mediante IA';
+    }
+}
+
+// Inicializar sistema de agricultura cuando el DOM esté listo
+if (document.readyState === 'loading') {
+    document.addEventListener('DOMContentLoaded', initAgricultureSystem);
+} else {
+    initAgricultureSystem();
+}
+
+// ========================================
+// NAVEGACIÓN Y UX MEJORADA
+// ========================================
+
+document.addEventListener('DOMContentLoaded', () => {
+    // Smooth scroll mejorado para todos los links de navegación
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            const target = document.querySelector(this.getAttribute('href'));
+            
+            if (target) {
+                // Actualizar active state en menú
+                document.querySelectorAll('.nav-link').forEach(link => {
+                    link.classList.remove('active');
+                });
+                
+                if (this.classList.contains('nav-link')) {
+                    this.classList.add('active');
+                }
+                
+                // Scroll suave
+                target.scrollIntoView({
+                    behavior: 'smooth',
+                    block: 'start'
+                });
+            }
+        });
+    });
+    
+    // Actualizar active state del menú según scroll
+    const sections = document.querySelectorAll('section[id]');
+    const navLinks = document.querySelectorAll('.nav-link');
+    
+    window.addEventListener('scroll', () => {
+        let current = '';
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            
+            if (window.pageYOffset >= sectionTop - 200) {
+                current = section.getAttribute('id');
+            }
+        });
+        
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    });
+});
